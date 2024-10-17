@@ -125,4 +125,3 @@ If you encounter any issues or have suggestions for improvement, feel free to op
 ---
 
 *Linpad is designed to be lightweight and functional, with many features planned for the future. Join us in developing and improving Linpad!*
-
