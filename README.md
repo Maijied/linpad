@@ -18,6 +18,13 @@
 
 ![Linpad in Action](./screenshots/linpad_screenshot.png)
 
+## Download
+
+You can download the `.deb` package for **Linpad** directly from this repository.
+
+[Download Linpad.deb package](./linpad.deb)
+
+
 ## Installation
 
 ### Install via `.deb` Package:
