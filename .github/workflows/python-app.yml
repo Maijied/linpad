@@ -59,9 +59,3 @@ jobs:
       with:
         name: linpad-deb-package
         path: output/linpad.deb
-
-    # Execute Node.js script (using Node.js v20)
-    - name: Run Node.js Script
-      run: |
-        echo "Running Node.js script using Node.js v20"
-        node index.js
