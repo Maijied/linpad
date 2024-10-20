@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 60  # Increase job timeout to avoid cancellation issues
 
     strategy:
       matrix:
@@ -39,11 +40,14 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Install dependencies
+    - name: Install core dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest mypy bandit
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Install development tools
+      run: |
+        pip install flake8==7.1.1 mypy==1.12.1 bandit==1.7.10 pytest==8.3.3
 
     - name: Lint with flake8
       run: |
