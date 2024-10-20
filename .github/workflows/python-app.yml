@@ -21,6 +21,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Check Git Version
+      run: git --version
+
     - name: Get version from Git tags
       id: version
       run: |
@@ -31,6 +34,9 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+
+    - name: Display Python Version
+      run: python --version
 
     - name: Cache pip dependencies
       uses: actions/cache@v3
