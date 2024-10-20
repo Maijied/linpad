@@ -63,4 +63,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: linpad-deb-package
-        path: output/linpad.deb
+        path: output/linpad.deb 
