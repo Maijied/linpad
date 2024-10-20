@@ -12,9 +12,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
@@ -59,3 +59,9 @@ jobs:
       with:
         name: linpad-deb-package
         path: output/linpad.deb
+
+    # Attest build provenance step
+    - name: Attest build provenance
+      uses: slsa-framework/github-actions/attest-build-provenance@v1
+      with:
+        attestation-path: 'output/build.attestation'  # Specify where to save the attestation
