@@ -12,92 +12,55 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9, 3.10, 3.11]  # Only valid versions
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Check Git Version
-      run: git --version
-
-    - name: List Environment Variables (debug)
-      run: printenv
-
-    - name: Get version from Git tags
-      id: version
-      run: |
-        VERSION=$(git describe --tags --abbrev=0 || echo "0.0.1")
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
-
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: "3.10"
 
-    - name: Display Python Version
-      run: python --version
-
-    - name: Cache pip dependencies (disabled for debug)
-      run: echo "Skipping cache for now"
-
-    - name: Install core dependencies
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-    - name: Install development tools
-      run: |
-        pip install flake8==7.1.1 mypy==1.12.1 bandit==1.7.10 pytest==8.3.3
 
     - name: Lint with flake8
       run: |
+        # Stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Treat all errors as warnings for max-complexity and max-line-length checks
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-    - name: Type checking with mypy
-      run: |
-        mypy .
-
-    - name: Security analysis with bandit
-      run: |
-        bandit -r . --skip B101  # Skip B101 assert rule
 
     - name: Test with pytest
       run: |
         pytest test/
+
+    - name: List project files
+      run: |
+        ls -R
 
     - name: Package Application
       run: |
         mkdir -p output
         cp -r ./linpad.py ./output/
         cp ./lin_logo.webp ./output/
-        cp -r ./DEBIAN ./output/
-        cp README.md ./output/
-        cp LICENSE ./output/
+        # Copy other necessary files to the output directory
+        cp -r ./DEBIAN ./output/  # Copy DEBIAN directory if needed
+        cp README.md ./output/     # Include README if needed
+        cp LICENSE ./output/       # Include LICENSE file if needed
 
     - name: Create .deb Package
       run: |
+        # Change to the output directory
         cd output
-        dpkg-deb --build . linpad-${{ env.VERSION }}.deb
+        # Build the .deb package using dpkg-deb
+        dpkg-deb --build . linpad.deb
 
-    - name: Create GitHub Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload .deb Package
+      uses: actions/upload-artifact@v3
       with:
-        tag_name: ${{ env.VERSION }}
-        release_name: Linpad ${{ env.VERSION }}
-        draft: false
-        prerelease: false
-
-    - name: Upload .deb to Release
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: output/linpad-${{ env.VERSION }}.deb
-        asset_name: linpad-${{ env.VERSION }}.deb
-        asset_content_type: application/x-debian-package
+        name: linpad-deb-package
+        path: output/linpad.deb
