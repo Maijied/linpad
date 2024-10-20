@@ -29,9 +29,7 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        # Stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # Treat all errors as warnings for max-complexity and max-line-length checks
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Test with pytest
@@ -47,16 +45,13 @@ jobs:
         mkdir -p output
         cp -r ./linpad.py ./output/
         cp ./lin_logo.webp ./output/
-        # Copy other necessary files to the output directory
-        cp -r ./DEBIAN ./output/  # Copy DEBIAN directory if needed
-        cp README.md ./output/     # Include README if needed
-        cp LICENSE ./output/       # Include LICENSE file if needed
+        cp -r ./DEBIAN ./output/
+        cp README.md ./output/
+        cp LICENSE ./output/
 
     - name: Create .deb Package
       run: |
-        # Change to the output directory
         cd output
-        # Build the .deb package using dpkg-deb
         dpkg-deb --build . linpad.deb
 
     - name: Upload .deb Package
@@ -65,13 +60,8 @@ jobs:
         name: linpad-deb-package
         path: output/linpad.deb
 
-    # Adding the runs configuration for a JavaScript action using Node.js v20
-    - name: Execute Node.js Action
+    # Execute Node.js script (using Node.js v20)
+    - name: Run Node.js Script
       run: |
-        echo "Running a JavaScript action using Node.js v20"
-        # Here you can specify your custom Node.js action
-    runs:
-      using: 'node20'
-      pre: 'setup.js'
-      main: 'index.js'
-      post: 'cleanup.js'
+        echo "Running Node.js script using Node.js v20"
+        node index.js
