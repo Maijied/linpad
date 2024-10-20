@@ -24,6 +24,9 @@ jobs:
     - name: Check Git Version
       run: git --version
 
+    - name: List Environment Variables
+      run: printenv
+
     - name: Get version from Git tags
       id: version
       run: |
