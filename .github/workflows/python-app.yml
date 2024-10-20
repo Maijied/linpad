@@ -63,4 +63,15 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: linpad-deb-package
-        path: output/linpad.deb 
+        path: output/linpad.deb
+
+    # Adding the runs configuration for a JavaScript action using Node.js v20
+    - name: Execute Node.js Action
+      run: |
+        echo "Running a JavaScript action using Node.js v20"
+        # Here you can specify your custom Node.js action
+    runs:
+      using: 'node20'
+      pre: 'setup.js'
+      main: 'index.js'
+      post: 'cleanup.js'
