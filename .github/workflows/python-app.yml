@@ -24,7 +24,7 @@ jobs:
     - name: Check Git Version
       run: git --version
 
-    - name: List Environment Variables
+    - name: List Environment Variables (debug)
       run: printenv
 
     - name: Get version from Git tags
@@ -41,13 +41,8 @@ jobs:
     - name: Display Python Version
       run: python --version
 
-    - name: Cache pip dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+    - name: Cache pip dependencies (disabled for debug)
+      run: echo "Skipping cache for now"
 
     - name: Install core dependencies
       run: |
