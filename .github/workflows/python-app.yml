@@ -58,3 +58,9 @@ jobs:
         cd output
         # Build the .deb package using dpkg-deb
         dpkg-deb --build . linpad.deb
+
+    - name: Upload .deb Package
+      uses: actions/upload-artifact@v3
+      with:
+        name: linpad-deb-package
+        path: output/linpad.deb
