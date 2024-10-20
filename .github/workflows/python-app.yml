@@ -62,5 +62,6 @@ jobs:
 
     - name: Attest
       uses: actions/attest-build-provenance@v1
+      id: attest
       with:
         subject-path: '${{ github.workspace }}/output'
