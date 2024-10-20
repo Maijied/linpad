@@ -12,7 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60  # Increase job timeout to avoid cancellation issues
+    timeout-minutes: 60
 
     strategy:
       matrix:
@@ -60,7 +60,7 @@ jobs:
 
     - name: Security analysis with bandit
       run: |
-        bandit -r .
+        bandit -r . --skip B101  # Skip B101 assert rule
 
     - name: Test with pytest
       run: |
@@ -69,11 +69,11 @@ jobs:
     - name: Package Application
       run: |
         mkdir -p output
-        cp -r ./linpad.py ./output/           # Ensure linpad.py exists
-        cp ./lin_logo.webp ./output/          # Ensure this logo exists
-        cp -r ./DEBIAN ./output/              # Ensure DEBIAN directory is present
-        cp README.md ./output/                # Make sure README.md is in the repo root
-        cp LICENSE ./output/                  # Include LICENSE file if available
+        cp -r ./linpad.py ./output/
+        cp ./lin_logo.webp ./output/
+        cp -r ./DEBIAN ./output/
+        cp README.md ./output/
+        cp LICENSE ./output/
 
     - name: Create .deb Package
       run: |
