@@ -60,7 +60,7 @@ jobs:
         name: linpad-deb-package
         path: output/linpad.deb
 
-    - name: Attest build provenance
-      uses: slsa-framework/slsa-github-generator@v1
+    - name: Attest
+      uses: actions/attest-build-provenance@v1
       with:
-        attestation-path: 'output/build.attestation'
+        subject-path: '${{ github.workspace }}/output'
