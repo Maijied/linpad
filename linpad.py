@@ -50,6 +50,11 @@ class Linpad:
         self.format_menu.add_command(label="Zoom In", command=self.zoom_in)
         self.format_menu.add_command(label="Zoom Out", command=self.zoom_out)
 
+        self.help_menu = tk.Menu(self.menu_bar, tearoff=0)
+        self.menu_bar.add_cascade(label="Help", menu=self.help_menu)
+        self.help_menu.add_command(label="About", command=self.show_about)
+        self.help_menu.add_command(label="Documentation", command=self.show_documentation)
+
         self.status_bar = tk.Label(self.root, text="Line 1, Column 1", anchor='w')
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
@@ -161,6 +166,18 @@ class Linpad:
         new_size = current_font.actual()["size"] - 2
         new_font = font.Font(family=current_font.actual()["family"], size=new_size)
         self.text_area.config(font=new_font)
+
+    def show_about(self):
+        messagebox.showinfo(
+            "About", 
+            "Linpad Version 1.0\n\n"
+            "Linpad is a simple text editor with syntax highlighting and word count functionality. "
+            "I am going to make this open-source via GitHub, so everyone can collaborate to enhance and expand its features. "
+            "Let me know if you have some good ideas to make it better. You will find me here: mdshuvo40@gmail.com"
+        )
+
+    def show_documentation(self):
+        messagebox.showinfo("Documentation", "Documentation is not available yet.")
 
 if __name__ == "__main__":
     root = tk.Tk()
