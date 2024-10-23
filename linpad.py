@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 from tkinter import font
@@ -59,7 +58,9 @@ class Linpad:
         self.status_bar = tk.Label(self.root, text="Line 1, Column 1", anchor='w')
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
-    def update_status_bar(self, event=None):
+        self.bind_shortcuts()
+
+    def update_status_bar(self, _=None):
         row, col = self.text_area.index(tk.INSERT).split('.')
         self.status_bar.config(text=f"Line {int(row)}, Column {int(col) + 1}")
         self.highlight_syntax()
@@ -133,10 +134,8 @@ class Linpad:
         content = self.text_area.get("1.0", tk.END)
         word_count = len(content.split())
         char_count = len(content)
-        messagebox.showinfo("Word Count", f"Words: {word_count}\nCharacters: {char_count}")
 
     def highlight_syntax(self, event=None):
-        self.text_area.tag_remove('keyword', '1.0', tk.END)
         content = self.text_area.get('1.0', tk.END).split()
         for word in content:
             if word in keyword.kwlist:
@@ -183,7 +182,29 @@ class Linpad:
         except webbrowser.Error:
             messagebox.showinfo("Documentation", "Please connect to the internet to view the documentation.")
 
+    def bind_shortcuts(self):
+        self.root.bind("<Control-n>", lambda event: self.new_file())
+        self.root.bind("<Control-n>", lambda _: self.new_file())
+        self.root.bind("<Control-o>", lambda _: self.open_file())
+        self.root.bind("<Control-s>", lambda _: self.save_file())
+        self.root.bind("<Control-Shift-S>", lambda _: self.save_as_file())
+        self.root.bind("<Control-p>", lambda _: self.print_file())
+        self.root.bind("<Control-q>", lambda _: self.root.quit())
 
+        self.root.bind("<Control-z>", lambda _: self.text_area.edit_undo())
+        self.root.bind("<Control-y>", lambda _: self.text_area.edit_redo())
+        self.root.bind("<Control-x>", lambda _: self.text_area.event_generate("<<Cut>>"))
+        self.root.bind("<Control-c>", lambda _: self.text_area.event_generate("<<Copy>>"))
+        self.root.bind("<Control-v>", lambda _: self.text_area.event_generate("<<Paste>>"))
+        self.root.bind("<Delete>", lambda _: self.text_area.delete("sel.first", "sel.last"))
+        self.root.bind("<Control-a>", lambda _: self.text_area.tag_add("sel", "1.0", "end"))
+
+        self.root.bind("<Control-f>", lambda _: self.find_text())
+        self.root.bind("<Control-h>", lambda _: self.replace_text())
+        self.root.bind("<Control-w>", lambda _: self.word_count())
+
+        self.root.bind("<Control-equal>", lambda _: self.zoom_in())
+        self.root.bind("<Control-d>", lambda _: self.toggle_dark_mode())
 if __name__ == "__main__":
     root = tk.Tk()
     app = Linpad(root)

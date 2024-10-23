@@ -1,5 +1,4 @@
 # Linpad Documentation
-
 **Linpad** is a minimalist text editor for Ubuntu, featuring syntax highlighting, word count functionality, and a clean user interface. It's designed for developers and casual users alike, providing basic text editing functions with plans for continuous improvement.
 
 ## Table of Contents
@@ -78,26 +77,26 @@ To open Linpad, you can either run the command `linpad` from your terminal or la
 
 ### File Operations
 
-- **New File:** Create a new file by selecting `File > New`.
-- **Open File:** Open an existing file by selecting `File > Open`.
-- **Save File:** Save the current file by selecting `File > Save`.
-- **Save As:** Save the current file with a new name by selecting `File > Save As`.
-- **Print File:** Save the current file as a PostScript file for printing by selecting `File > Print`.
+- **New File:** Create a new file by selecting `File > New` or pressing `Ctrl+N`.
+- **Open File:** Open an existing file by selecting `File > Open` or pressing `Ctrl+O`.
+- **Save File:** Save the current file by selecting `File > Save` or pressing `Ctrl+S`.
+- **Save As:** Save the current file with a new name by selecting `File > Save As` or pressing `Ctrl+Shift+S`.
+- **Print File:** Save the current file as a PostScript file for printing by selecting `File > Print` or pressing `Ctrl+P`.
 
 ### Editing Operations
 
-- **Undo/Redo:** Undo or redo the last action by selecting `Edit > Undo` or `Edit > Redo`.
-- **Cut/Copy/Paste:** Cut, copy, or paste text by selecting the respective options under `Edit`.
-- **Delete:** Delete selected text by selecting `Edit > Delete`.
-- **Select All:** Select all text by selecting `Edit > Select All`.
-- **Find/Replace:** Find or replace text by selecting `Edit > Find` or `Edit > Replace`.
-- **Word Count:** View the word and character count by selecting `Edit > Word Count`.
+- **Undo/Redo:** Undo or redo the last action by selecting `Edit > Undo` or `Edit > Redo` or pressing `Ctrl+Z` or `Ctrl+Y`.
+- **Cut/Copy/Paste:** Cut, copy, or paste text by selecting the respective options under `Edit` or pressing `Ctrl+X`, `Ctrl+C`, or `Ctrl+V`.
+- **Delete:** Delete selected text by pressing `Del`.
+- **Select All:** Select all text by selecting `Edit > Select All` or pressing `Ctrl+A`.
+- **Find/Replace:** Find or replace text by selecting `Edit > Find` or `Edit > Replace` or pressing `Ctrl+F` or `Ctrl+H`.
+- **Word Count:** View the word and character count by selecting `Edit > Word Count` or pressing `Ctrl+W`.
 
 ### Formatting Options
 
 - **Font:** Change the font family and size by selecting `Format > Font`.
-- **Toggle Dark Mode:** Switch between dark and light modes by selecting `Format > Toggle Dark Mode`.
-- **Zoom In/Out:** Increase or decrease the font size by selecting `Format > Zoom In` or `Format > Zoom Out`.
+- **Toggle Dark Mode:** Switch between dark and light modes by selecting `Format > Toggle Dark Mode` or pressing `Ctrl+D`.
+- **Zoom In/Out:** Increase or decrease the font size by selecting `Format > Zoom In` or `Format > Zoom Out` or pressing `Ctrl+=` or `Ctrl+-`.
 
 ### Help Menu
 
@@ -127,3 +126,4 @@ If you encounter any issues or have suggestions for improvement, feel free to op
 ---
 
 *Linpad is designed to be lightweight and functional, with many features planned for the future. Join us in developing and improving Linpad!*
+
