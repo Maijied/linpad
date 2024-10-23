@@ -7,6 +7,10 @@ import webbrowser
 
 class Linpad:
     def __init__(self, root):
+
+        default_font = ("Arial", 12)
+        root.option_add("*Font", default_font)
+
         self.root = root
         self.root.title("Linpad")
         self.root.geometry("800x600")
@@ -160,16 +164,19 @@ class Linpad:
             self.status_bar.config(background="black", foreground="white")
 
     def zoom_in(self):
-        current_font = font.nametofont(self.text_area.cget("font"))
-        new_size = current_font.actual()["size"] + 2
-        new_font = font.Font(family=current_font.actual()["family"], size=new_size)
-        self.text_area.config(font=new_font)
+        current_font = font.nametofont(self.text_area.cget("font"))  # Get the current font as a Font object
+        new_size = current_font.actual("size") + 2  # Increase font size by 2
+        current_font.config(size=new_size)  # Apply the new font size
+        self.text_area.config(font=current_font)  # Update the text area font
 
     def zoom_out(self):
-        current_font = font.nametofont(self.text_area.cget("font"))
-        new_size = current_font.actual()["size"] - 2
-        new_font = font.Font(family=current_font.actual()["family"], size=new_size)
-        self.text_area.config(font=new_font)
+        current_font = font.nametofont(self.text_area.cget("font"))  # Get the current font as a Font object
+        new_size = current_font.actual("size") - 2  # Decrease font size by 2
+        if new_size > 0:  # Avoid setting font size to 0 or negative
+            current_font.config(size=new_size)  # Apply the new font size
+            self.text_area.config(font=current_font)  # Update the text area font
+
+
 
     def show_about(self):
         messagebox.showinfo(
@@ -207,6 +214,7 @@ class Linpad:
         self.root.bind("<Control-w>", lambda _: self.word_count())
 
         self.root.bind("<Control-equal>", lambda _: self.zoom_in())
+        self.root.bind("<Control-minus>", lambda _: self.zoom_out())
         self.root.bind("<Control-d>", lambda _: self.toggle_dark_mode())
 
     def undo(self):
@@ -222,3 +230,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = Linpad(root)
     root.mainloop()
+    
