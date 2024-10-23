@@ -16,7 +16,48 @@
 
 ## Folder Structure
 
-![Linpad in Action](./screenshots/linpad_screenshot.png)
+```markdown
+linpad/
+├── CONTRIBUTING.md          # Guidelines for contributing to the project
+├── DEBIAN
+│   └── control              # Control file for Debian package
+├── LICENSE                  # License information for the project
+├── lin_logo.webp            # Logo image for Linpad
+├── linpad.deb               # Debian package for Linpad
+├── linpad.py                # Main Python script for Linpad
+├── README.md                # Readme file with project information
+├── screenshots
+│   └── linpad_screenshot.png # Screenshot of Linpad in action
+├── setup.sh                 # Setup script for installing Linpad
+├── test
+│   └── test_linpad.py       # Test script for Linpad
+└── usr
+    ├── bin
+    │   └── linpad           # Executable binary for Linpad
+    └── share
+        ├── applications
+        │   └── linpad.desktop # Desktop entry for Linpad
+        └── icons
+            └── hicolor
+                ├── 128x128
+                │   └── apps
+                │       └── linpad.png # 128x128 icon for Linpad
+                ├── 16x16
+                │   └── apps
+                │       └── linpad.png # 16x16 icon for Linpad
+                ├── 256x256
+                │   └── apps
+                │       └── linpad.png # 256x256 icon for Linpad
+                ├── 32x32
+                │   └── apps
+                │       └── linpad.png # 32x32 icon for Linpad
+                ├── 48x48
+                │   └── apps
+                │       └── linpad.png # 48x48 icon for Linpad
+                └── 64x64
+                    └── apps
+                        └── linpad.png # 64x64 icon for Linpad
+```
 
 ## Download
 

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Linpad
+Exec=/usr/bin/linpad
+Icon=linpad
+Type=Application
+Categories=TextEditor;Utility;
+Terminal=false
