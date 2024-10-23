@@ -41,6 +41,11 @@ jobs:
       run: |
         pytest test/
 
+    - name: Update executable in usr/bin
+      run: |
+        cp linpad.py usr/bin/linpad
+        chmod +x usr/bin/linpad
+
     - name: List project files
       run: |
         ls -R
@@ -53,6 +58,7 @@ jobs:
         cp -r ./DEBIAN ./output/
         cp README.md ./output/
         cp LICENSE ./output/
+        cp -r ./usr ./output/usr
 
     - name: Create .deb Package
       run: |
