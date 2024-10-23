@@ -30,13 +30,13 @@ class Linpad:
 
         self.edit_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.menu_bar.add_cascade(label="Edit", menu=self.edit_menu)
-        self.edit_menu.add_command(label="Undo", command=self.text_area.edit_undo)
-        self.edit_menu.add_command(label="Redo", command=self.text_area.edit_redo)
+        self.edit_menu.add_command(label="Undo", command=self.undo)
+        self.edit_menu.add_command(label="Redo", command=self.redo)
         self.edit_menu.add_separator()
         self.edit_menu.add_command(label="Cut", command=lambda: self.text_area.event_generate("<<Cut>>"))
         self.edit_menu.add_command(label="Copy", command=lambda: self.text_area.event_generate("<<Copy>>"))
         self.edit_menu.add_command(label="Paste", command=lambda: self.text_area.event_generate("<<Paste>>"))
-        self.edit_menu.add_command(label="Delete", command=lambda: self.text_area.delete("sel.first", "sel.last"))
+        self.edit_menu.add_command(label="Delete", command=self.delete_selection)
         self.edit_menu.add_command(label="Select All", command=lambda: self.text_area.tag_add("sel", "1.0", "end"))
         self.edit_menu.add_separator()
         self.edit_menu.add_command(label="Find", command=self.find_text)
@@ -57,6 +57,9 @@ class Linpad:
 
         self.status_bar = tk.Label(self.root, text="Line 1, Column 1", anchor='w')
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
+
+        self.default_font = font.Font(family="Arial", size=12)
+        self.text_area.config(font=self.default_font)
 
         self.bind_shortcuts()
 
@@ -134,6 +137,7 @@ class Linpad:
         content = self.text_area.get("1.0", tk.END)
         word_count = len(content.split())
         char_count = len(content)
+        messagebox.showinfo("Word Count", f"Words: {word_count}\nCharacters: {char_count}")
 
     def highlight_syntax(self, event=None):
         content = self.text_area.get('1.0', tk.END).split()
@@ -183,7 +187,6 @@ class Linpad:
             messagebox.showinfo("Documentation", "Please connect to the internet to view the documentation.")
 
     def bind_shortcuts(self):
-        self.root.bind("<Control-n>", lambda event: self.new_file())
         self.root.bind("<Control-n>", lambda _: self.new_file())
         self.root.bind("<Control-o>", lambda _: self.open_file())
         self.root.bind("<Control-s>", lambda _: self.save_file())
@@ -191,12 +194,12 @@ class Linpad:
         self.root.bind("<Control-p>", lambda _: self.print_file())
         self.root.bind("<Control-q>", lambda _: self.root.quit())
 
-        self.root.bind("<Control-z>", lambda _: self.text_area.edit_undo())
-        self.root.bind("<Control-y>", lambda _: self.text_area.edit_redo())
+        self.root.bind("<Control-z>", lambda _: self.undo())
+        self.root.bind("<Control-y>", lambda _: self.redo())
         self.root.bind("<Control-x>", lambda _: self.text_area.event_generate("<<Cut>>"))
         self.root.bind("<Control-c>", lambda _: self.text_area.event_generate("<<Copy>>"))
-        self.root.bind("<Control-v>", lambda _: self.text_area.event_generate("<<Paste>>"))
-        self.root.bind("<Delete>", lambda _: self.text_area.delete("sel.first", "sel.last"))
+        # Removed Ctrl+V binding to avoid duplication
+        self.root.bind("<Delete>", lambda _: self.delete_selection())
         self.root.bind("<Control-a>", lambda _: self.text_area.tag_add("sel", "1.0", "end"))
 
         self.root.bind("<Control-f>", lambda _: self.find_text())
@@ -205,6 +208,16 @@ class Linpad:
 
         self.root.bind("<Control-equal>", lambda _: self.zoom_in())
         self.root.bind("<Control-d>", lambda _: self.toggle_dark_mode())
+
+    def undo(self):
+        self.text_area.edit_undo()
+
+    def redo(self):
+        self.text_area.edit_redo()
+
+    def delete_selection(self):
+        self.text_area.delete(tk.SEL_FIRST, tk.SEL_LAST)
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = Linpad(root)
