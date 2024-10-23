@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 from tkinter import font
 import keyword
+import webbrowser
 
 class Linpad:
     def __init__(self, root):
@@ -177,7 +178,11 @@ class Linpad:
         )
 
     def show_documentation(self):
-        messagebox.showinfo("Documentation", "Documentation is not available yet.")
+        try:
+            webbrowser.open_new_tab("https://github.com/Maijied/linpad/blob/main/DOCUMENTATION.md")
+        except webbrowser.Error:
+            messagebox.showinfo("Documentation", "Please connect to the internet to view the documentation.")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
