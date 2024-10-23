@@ -176,7 +176,44 @@ class Linpad:
             current_font.config(size=new_size)  # Apply the new font size
             self.text_area.config(font=current_font)  # Update the text area font
 
+    def toggle_bold(self):
+        try:
+            current_tags = self.text_area.tag_names(tk.SEL_FIRST)
+            if "bold" in current_tags:
+                self.text_area.tag_remove("bold", tk.SEL_FIRST, tk.SEL_LAST)
+            else:
+                bold_font = font.Font(self.text_area, self.text_area.cget("font"))
+                bold_font.configure(weight="bold")
+                self.text_area.tag_configure("bold", font=bold_font)
+                self.text_area.tag_add("bold", tk.SEL_FIRST, tk.SEL_LAST)
+        except tk.TclError:
+            pass  # Handles the case when no text is selected
 
+    def toggle_italic(self):
+        try:
+            current_tags = self.text_area.tag_names(tk.SEL_FIRST)
+            if "italic" in current_tags:
+                self.text_area.tag_remove("italic", tk.SEL_FIRST, tk.SEL_LAST)
+            else:
+                italic_font = font.Font(self.text_area, self.text_area.cget("font"))
+                italic_font.configure(slant="italic")
+                self.text_area.tag_configure("italic", font=italic_font)
+                self.text_area.tag_add("italic", tk.SEL_FIRST, tk.SEL_LAST)
+        except tk.TclError:
+            pass  # Handles the case when no text is selected
+
+    def toggle_underline(self):
+        try:
+            current_tags = self.text_area.tag_names(tk.SEL_FIRST)
+            if "underline" in current_tags:
+                self.text_area.tag_remove("underline", tk.SEL_FIRST, tk.SEL_LAST)
+            else:
+                underline_font = font.Font(self.text_area, self.text_area.cget("font"))
+                underline_font.configure(underline=True)
+                self.text_area.tag_configure("underline", font=underline_font)
+                self.text_area.tag_add("underline", tk.SEL_FIRST, tk.SEL_LAST)
+        except tk.TclError:
+            pass
 
     def show_about(self):
         messagebox.showinfo(
@@ -216,6 +253,10 @@ class Linpad:
         self.root.bind("<Control-equal>", lambda _: self.zoom_in())
         self.root.bind("<Control-minus>", lambda _: self.zoom_out())
         self.root.bind("<Control-d>", lambda _: self.toggle_dark_mode())
+
+        self.root.bind("<Control-b>", lambda _: self.toggle_bold())
+        self.root.bind("<Control-i>", lambda _: self.toggle_italic())
+        self.root.bind("<Control-u>", lambda _: self.toggle_underline())
 
     def undo(self):
         self.text_area.edit_undo()
