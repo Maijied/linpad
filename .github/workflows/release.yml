@@ -1,36 +1,37 @@
 name: Automation to Make Releases
 
 on:
-  push:
-    tags:
-      - 'v*.*.*-beta'  # Trigger on the tag created from python-app.yml
+    push:
+      branches:
+        - "Automatic-release-deb-file-in-github"
+      tags:
+        - 'v*.*.*-beta'
 
 jobs:
-  create_release:
-    runs-on: ubuntu-latest
+    create_release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+            - name: Download .deb package
+              uses: actions/download-artifact@v3
+              with:
+                name: linpad-deb-package
 
-    - name: Download .deb package
-      uses: actions/download-artifact@v3
-      with:
-        name: linpad-deb-package
+            - name: Get current version
+              id: get_version
+              run: |
+                TAG=$(git describe --tags --abbrev=0)
+                VERSION=${TAG//v/}
+                echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-    - name: Get current version
-      id: get_version
-      run: |
-        TAG=$(git describe --tags --abbrev=0)
-        VERSION=${TAG//v/}
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
-
-    - name: Create Release
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: ${{ env.VERSION }}
-        name: ${{ env.VERSION }}
-        body: "Release of Linpad application version ${{ env.VERSION }}"
-        files: output/linpad.deb
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Create Release
+              uses: softprops/action-gh-release@v1
+              with:
+                tag_name: ${{ env.VERSION }}
+                name: ${{ env.VERSION }}
+                body: "Release of Linpad application version ${{ env.VERSION }}"
+                files: linpad.deb  # Adjusted the path to the downloaded artifact
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

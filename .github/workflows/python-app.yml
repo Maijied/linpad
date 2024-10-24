@@ -16,10 +16,10 @@ jobs:
       id-token: write
       contents: read
       attestations: write
-
+      
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
@@ -80,8 +80,11 @@ jobs:
     - name: Tag the release version
       id: tag_version
       run: |
-        # Fetch the latest tag
-        TAG=$(git describe --tags --abbrev=0)
+        # Fetch the latest tag, if none found, start with v0.0.0
+        TAG=$(git tag -l | tail -n 1)
+        if [ -z "$TAG" ]; then
+          TAG="v0.0.0"
+        fi
         # Extract the version numbers
         VERSION=${TAG//v/}
         # Split into an array
@@ -92,4 +95,4 @@ jobs:
         NEW_VERSION="v${VERSION_ARRAY[0]}.${VERSION_ARRAY[1]}.$NEW_LAST-beta"
         echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
         git tag $NEW_VERSION
-        git push origin --tags  # Trigger the release.yml by pushing the tag
+        git push origin $NEW_VERSION
