@@ -2,10 +2,8 @@ name: Automation to Make Releases
 
 on:
   push:
-    branches:
-      - "Automatic-release-deb-file-in-github"
     tags:
-      - 'v*.*.*-beta'
+      - 'v*.*.*-beta'  # Trigger on the tag created from python-app.yml
 
 jobs:
   create_release:
@@ -13,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Updated to v3
+      uses: actions/checkout@v3
 
     - name: Download .deb package
       uses: actions/download-artifact@v3
@@ -33,6 +31,6 @@ jobs:
         tag_name: ${{ env.VERSION }}
         name: ${{ env.VERSION }}
         body: "Release of Linpad application version ${{ env.VERSION }}"
-        files: output/linpad.deb  # Ensure this path exists
+        files: output/linpad.deb
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

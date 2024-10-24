@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Updated to v3
+      uses: actions/checkout@v3
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
@@ -92,4 +92,4 @@ jobs:
         NEW_VERSION="v${VERSION_ARRAY[0]}.${VERSION_ARRAY[1]}.$NEW_LAST-beta"
         echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
         git tag $NEW_VERSION
-        git push origin --tags  # Ensure the tag is pushed
+        git push origin --tags  # Trigger the release.yml by pushing the tag
