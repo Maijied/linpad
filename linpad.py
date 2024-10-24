@@ -55,6 +55,10 @@ class Linpad:
         self.format_menu.add_command(label="Zoom In", command=self.zoom_in)
         self.format_menu.add_command(label="Zoom Out", command=self.zoom_out)
 
+        # Add font selection submenu
+        self.font_menu = tk.Menu(self.format_menu, tearoff=0)
+        self.format_menu.add_cascade(label="Select Font", menu=self.font_menu)
+
         self.help_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.menu_bar.add_cascade(label="Help", menu=self.help_menu)
         self.help_menu.add_command(label="About", command=self.show_about)
@@ -78,9 +82,34 @@ class Linpad:
         self.bind_shortcuts()
         self.schedule_autosave()
 
+        # List of all available fonts
+        self.fonts = font.families()
+        self.current_font_index = 0
+
+        # Populate font menu
+        for font_name in self.fonts:
+            self.font_menu.add_command(label=font_name, command=lambda f=font_name: self.set_font(f))
+
+    def set_font(self, font_name):
+        new_font = font.Font(family=font_name, size=12)
+        self.text_area.config(font=new_font)
+
+    def next_font(self):
+        self.current_font_index = (self.current_font_index + 1) % len(self.fonts)
+        self.set_font(self.fonts[self.current_font_index])
+        self.update_status_bar_with_font(self.fonts[self.current_font_index])
+    
+    def previous_font(self):
+        self.current_font_index = (self.current_font_index - 1) % len(self.fonts)
+        self.set_font(self.fonts[self.current_font_index])
+        self.update_status_bar_with_font(self.fonts[self.current_font_index])
+    
     def update_status_bar(self, _=None):
         row, col = self.text_area.index(tk.INSERT).split('.')
         self.status_label.config(text=f"Line {int(row)}, Column {int(col) + 1}")
+    
+    def update_status_bar_with_font(self, font_name):
+        self.autosave_label.config(text=f"Font: {font_name}")
         self.highlight_syntax()
 
     def new_file(self):
@@ -242,6 +271,17 @@ class Linpad:
         self.root.bind("<Control-d>", lambda _: self.toggle_dark_mode())
 
         self.root.bind("<Control-u>", lambda _: self.toggle_underline())
+
+        # Bind shortcuts for changing fonts
+        self.root.bind("<Control-Key-1>", lambda _: self.set_font("Arial"))
+        self.root.bind("<Control-Key-2>", lambda _: self.set_font("Courier New"))
+        self.root.bind("<Control-Key-3>", lambda _: self.set_font("Comic Sans MS"))
+        self.root.bind("<Control-Key-4>", lambda _: self.set_font("Fixedsys"))
+        self.root.bind("<Control-Key-5>", lambda _: self.set_font("MS Sans Serif"))
+
+        # Bind shortcuts for next and previous fonts
+        self.root.bind("<Control-Right>", lambda _: self.next_font())
+        self.root.bind("<Control-Left>", lambda _: self.previous_font())
 
     def undo(self):
         self.text_area.edit_undo()
