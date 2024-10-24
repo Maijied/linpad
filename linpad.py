@@ -64,6 +64,11 @@ class Linpad:
         self.help_menu.add_command(label="About", command=self.show_about)
         self.help_menu.add_command(label="Documentation", command=self.show_documentation)
 
+        # Add Shortcuts/Command submenu
+        self.shortcuts_menu = tk.Menu(self.help_menu, tearoff=0)
+        self.help_menu.add_command(label="Shortcuts/Command", command=self.show_shortcuts)
+        # self.shortcuts_menu.add_command(label="Show Shortcuts", command=self.show_shortcuts)
+
         self.status_bar = tk.Frame(self.root)
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
@@ -245,6 +250,43 @@ class Linpad:
             webbrowser.open_new_tab("https://github.com/Maijied/linpad/blob/main/DOCUMENTATION.md")
         except webbrowser.Error:
             messagebox.showinfo("Documentation", "Please connect to the internet to view the documentation.")
+
+    def show_shortcuts(self):
+        shortcuts = (
+            "File Operations:\n"
+            "  Ctrl+N: New File\n"
+            "  Ctrl+O: Open File\n"
+            "  Ctrl+S: Save File\n"
+            "  Ctrl+Shift+S: Save As\n"
+            "  Ctrl+P: Print File\n"
+            "  Ctrl+Q: Quit\n\n"
+            "Edit Operations:\n"
+            "  Ctrl+Z: Undo\n"
+            "  Ctrl+Y: Redo\n"
+            "  Ctrl+X: Cut\n"
+            "  Ctrl+C: Copy\n"
+            "  Ctrl+V: Paste\n"
+            "  Delete: Delete Selection\n"
+            "  Ctrl+A: Select All\n\n"
+            "Search and Replace:\n"
+            "  Ctrl+F: Find\n"
+            "  Ctrl+H: Replace\n\n"
+            "View Operations:\n"
+            "  Ctrl+W: Word Count\n"
+            "  Ctrl+=: Zoom In\n"
+            "  Ctrl+-: Zoom Out\n"
+            "  Ctrl+D: Toggle Dark Mode\n"
+            "  Ctrl+U: Toggle Underline\n\n"
+            "Font Operations:\n"
+            "  Ctrl+Right: Next Font\n"
+            "  Ctrl+Left: Previous Font\n"
+            "  Ctrl+Key-1: Set Font to Arial\n"
+            "  Ctrl+Key-2: Set Font to Courier New\n"
+            "  Ctrl+Key-3: Set Font to Comic Sans MS\n"
+            "  Ctrl+Key-4: Set Font to Fixedsys\n"
+            "  Ctrl+Key-5: Set Font to MS Sans Serif\n"
+        )
+        messagebox.showinfo("Keyboard Shortcuts", shortcuts)
 
     def bind_shortcuts(self):
         self.root.bind("<Control-n>", lambda _: self.new_file())
