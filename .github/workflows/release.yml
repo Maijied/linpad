@@ -2,8 +2,10 @@ name: Automation to Make Releases
 
 on:
     push:
-        tags:
-            - 'v*.*.*-beta'
+      branches:
+        - "Automatic-release-deb-file-in-github"
+      tags:
+        - 'v*.*.*-beta'
 
 jobs:
     create_release:

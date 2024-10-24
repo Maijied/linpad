@@ -2,9 +2,9 @@ name: Linpad application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "Automatic-release-deb-file-in-github" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "Automatic-release-deb-file-in-github" ]
 
 permissions:
   contents: read
