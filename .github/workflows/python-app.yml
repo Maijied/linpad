@@ -79,6 +79,8 @@ jobs:
 
     - name: Tag the release version
       id: tag_version
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use your new PAT secret
       run: |
         # Fetch the latest tag, if none found, start with v0.0.0
         TAG=$(git tag -l | tail -n 1)
