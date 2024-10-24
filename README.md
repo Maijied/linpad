@@ -18,6 +18,46 @@ To install Linpad, follow these steps:
 1. Download the latest release from the [Releases](https://github.com/Maijied/linpad/releases) page.
 2. Follow the installation instructions for your operating system (Windows, macOS, Linux).
 
+### Installation via Setup Script
+
+To install Linpad, you can use the provided `setup.sh` script.
+
+#### How to Use setup.sh
+
+1. **Make the Script Executable:**  
+    First, you need to make the `setup.sh` file executable:
+    ```bash
+    chmod +x setup.sh
+    ```
+
+2. **Run the Script:**  
+    Then, you can run the setup script with:
+    ```bash
+    ./setup.sh
+    ```
+
+### Building the .deb Package
+
+To build the `.deb` package for Linpad, follow these steps:
+
+1. **Install Required Tools:**  
+    Ensure you have `dpkg-deb` installed:
+    ```bash
+    sudo apt-get install dpkg-deb
+    ```
+
+2. **Build the Package:**  
+    Navigate to the project directory and run:
+    ```bash
+    dpkg-deb --build linpad
+    ```
+
+3. **Install the Package:**  
+    Once the package is built, you can install it using:
+    ```bash
+    sudo dpkg -i linpad.deb
+    ```
+
 ## Usage
 ### Menu Options
 - **File Menu**:
@@ -120,31 +160,31 @@ linpad/
 ├── test
 │   └── test_linpad.py       # Test script for Linpad
 └── usr
-        ├── bin
-        │   └── linpad           # Executable binary for Linpad
-        └── share
-                ├── applications
-                │   └── linpad.desktop # Desktop entry for Linpad
-                └── icons
-                        └── hicolor
-                                ├── 128x128
-                                │   └── apps
-                                │       └── linpad.png # 128x128 icon for Linpad
-                                ├── 16x16
-                                │   └── apps
-                                │       └── linpad.png # 16x16 icon for Linpad
-                                ├── 256x256
-                                │   └── apps
-                                │       └── linpad.png # 256x256 icon for Linpad
-                                ├── 32x32
-                                │   └── apps
-                                │       └── linpad.png # 32x32 icon for Linpad
-                                ├── 48x48
-                                │   └── apps
-                                │       └── linpad.png # 48x48 icon for Linpad
-                                └── 64x64
-                                        └── apps
-                                                └── linpad.png # 64x64 icon for Linpad
+       ├── bin
+       │   └── linpad           # Executable binary for Linpad
+       └── share
+             ├── applications
+             │   └── linpad.desktop # Desktop entry for Linpad
+             └── icons
+                    └── hicolor
+                          ├── 128x128
+                          │   └── apps
+                          │       └── linpad.png # 128x128 icon for Linpad
+                          ├── 16x16
+                          │   └── apps
+                          │       └── linpad.png # 16x16 icon for Linpad
+                          ├── 256x256
+                          │   └── apps
+                          │       └── linpad.png # 256x256 icon for Linpad
+                          ├── 32x32
+                          │   └── apps
+                          │       └── linpad.png # 32x32 icon for Linpad
+                          ├── 48x48
+                          │   └── apps
+                          │       └── linpad.png # 48x48 icon for Linpad
+                          └── 64x64
+                                └── apps
+                                       └── linpad.png # 64x64 icon for Linpad
 ```
 
 ## Download
@@ -154,24 +194,6 @@ You can download the `.deb` package for **Linpad** directly from this repository
 [Download Linpad.deb package](https://github.com/Maijied/linpad/releases/download/open-source-ubuntu-text-editor/linpad_v1.0.1-beta.deb)
 
 Alternatively, you can download the latest build artifacts from our GitHub Actions workflow.
-
-## Installation via Setup Script
-
-To install Linpad, you can use the provided `setup.sh` script.
-
-### How to Use setup.sh
-
-1. **Make the Script Executable:**  
-     First, you need to make the `setup.sh` file executable:
-     ```bash
-     chmod +x setup.sh
-     ```
-
-2. **Run the Script:**  
-     Then, you can run the setup script with:
-     ```bash
-     ./setup.sh
-     ```
 
 ## Dependencies
 
