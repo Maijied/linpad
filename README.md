@@ -1,5 +1,4 @@
 # Linpad
-
 <img src="./lin_logo.webp" alt="Linpad Logo" width="200" height="200">
 
 **Linpad** is a minimalist text editor for Ubuntu, featuring syntax highlighting, word count functionality, and a clean user interface. It's designed for developers and casual users alike, providing basic text editing functions with plans for continuous improvement.
@@ -10,8 +9,10 @@
 - Word count functionality.
 - Replace and find functionality.
 - Toggle between dark and light modes.
-- Zoom in and out
-- Font customization
+- Zoom in and out.
+- Font customization.
+- Undo and redo actions.
+- Auto-save functionality.
 - Open-source and available for community contributions.
 
 ## Folder Structure
@@ -65,8 +66,7 @@ You can download the `.deb` package for **Linpad** directly from this repository
 
 [Download Linpad.deb package](https://github.com/Maijied/linpad/releases/download/open-source-ubuntu-text-editor/linpad_v1.0.1-beta.deb)
 
-Alternatively, you can download the latest build artifacts from our GitHub Actions workflow:
-
+Alternatively, you can download the latest build artifacts from our GitHub Actions workflow.
 
 ## Installation
 
@@ -109,7 +109,7 @@ Alternatively, you can download the latest build artifacts from our GitHub Actio
     python3 linpad.py
     ```
 
-## Installation via Setup script
+## Installation via Setup Script
 
 To install Linpad, you can use the provided `setup.sh` script.
 
@@ -120,8 +120,9 @@ To install Linpad, you can use the provided `setup.sh` script.
    ```bash
    chmod +x setup.sh
    ```
+
 2. **Run the Script:**  
-   Then, you can run the setup script with::
+   Then, you can run the setup script with:
    ```bash
    ./setup.sh
    ```
@@ -174,4 +175,4 @@ If you encounter any issues or have suggestions for improvement, feel free to op
 
 ---
 
-*Linpad is designed to be lightweight and functional, with many features planned for the future. Join us in developing and improving Linpad!!*
+*Linpad is designed to be lightweight and functional, with many features planned for the future. Join us in developing and improving Linpad!*
