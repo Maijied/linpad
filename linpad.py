@@ -4,6 +4,7 @@ from tkinter import filedialog, messagebox, simpledialog
 from tkinter import font
 import keyword
 import webbrowser
+import os
 
 class Linpad:
     def __init__(self, root):
@@ -59,21 +60,32 @@ class Linpad:
         self.help_menu.add_command(label="About", command=self.show_about)
         self.help_menu.add_command(label="Documentation", command=self.show_documentation)
 
-        self.status_bar = tk.Label(self.root, text="Line 1, Column 1", anchor='w')
+        self.status_bar = tk.Frame(self.root)
         self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
+
+        self.status_label = tk.Label(self.status_bar, text="Line 1, Column 1", anchor='w')
+        self.status_label.pack(side=tk.LEFT, fill=tk.X, expand=True)
+
+        self.autosave_label = tk.Label(self.status_bar, text="", anchor='e')
+        self.autosave_label.pack(side=tk.RIGHT)
 
         self.default_font = font.Font(family="Arial", size=12)
         self.text_area.config(font=self.default_font)
 
+        self.current_file_path = None
+        self.autosave_interval = 30000  # Autosave every 30 seconds
+
         self.bind_shortcuts()
+        self.schedule_autosave()
 
     def update_status_bar(self, _=None):
         row, col = self.text_area.index(tk.INSERT).split('.')
-        self.status_bar.config(text=f"Line {int(row)}, Column {int(col) + 1}")
+        self.status_label.config(text=f"Line {int(row)}, Column {int(col) + 1}")
         self.highlight_syntax()
 
     def new_file(self):
         self.text_area.delete(1.0, tk.END)
+        self.current_file_path = None
         self.update_status_bar()
 
     def open_file(self):
@@ -82,15 +94,15 @@ class Linpad:
             with open(file_path, "r") as file:
                 self.text_area.delete(1.0, tk.END)
                 self.text_area.insert(tk.END, file.read())
+            self.current_file_path = file_path
             self.update_status_bar()
 
     def save_file(self):
-        file_path = filedialog.asksaveasfilename(defaultextension=".txt",
-                                                 filetypes=[("Text files", "*.txt"),
-                                                            ("All files", "*.*")])
-        if file_path:
-            with open(file_path, "w") as file:
+        if self.current_file_path:
+            with open(self.current_file_path, "w") as file:
                 file.write(self.text_area.get(1.0, tk.END))
+        else:
+            self.save_as_file()
 
     def save_as_file(self):
         file_path = filedialog.asksaveasfilename(defaultextension=".txt",
@@ -99,6 +111,7 @@ class Linpad:
         if file_path:
             with open(file_path, "w") as file:
                 file.write(self.text_area.get(1.0, tk.END))
+            self.current_file_path = file_path
 
     def print_file(self):
         file_path = filedialog.asksaveasfilename(defaultextension=".ps",
@@ -189,9 +202,6 @@ class Linpad:
         except tk.TclError:
             pass
 
-
-
-
     def show_about(self):
         messagebox.showinfo(
             "About", 
@@ -242,8 +252,20 @@ class Linpad:
     def delete_selection(self):
         self.text_area.delete(tk.SEL_FIRST, tk.SEL_LAST)
 
+    def autosave(self):
+        temp_file_path = os.path.join(os.path.expanduser("~"), "linpad_autosave.txt")
+        with open(temp_file_path, "w") as file:
+            file.write(self.text_area.get(1.0, tk.END))
+        self.update_status_bar_with_autosave(temp_file_path)
+        self.schedule_autosave()
+
+    def update_status_bar_with_autosave(self, temp_file_path):
+        self.autosave_label.config(text=f"Auto saved to: {temp_file_path}")
+
+    def schedule_autosave(self):
+        self.root.after(self.autosave_interval, self.autosave)
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = Linpad(root)
     root.mainloop()
-    
