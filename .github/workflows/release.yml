@@ -3,7 +3,7 @@ name: Automation to Make Releases
 on:
     push:
         tags:
-            - 'v*.*.*'
+            - 'v*.*.*-beta'
 
 jobs:
     create_release:
@@ -12,27 +12,24 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
+            - name: Download .deb package
+              uses: actions/download-artifact@v3
+              with:
+                name: linpad-deb-package
+
             - name: Get current version
               id: get_version
               run: |
-                # Fetch the latest tag
                 TAG=$(git describe --tags --abbrev=0)
-                # Extract the version numbers
                 VERSION=${TAG//v/}
-                # Split into an array
-                IFS='.' read -r -a VERSION_ARRAY <<< "$VERSION"
-                # Increment the last digit for beta versions
-                LAST=${VERSION_ARRAY[2]}
-                NEW_LAST=$((LAST + 1))
-                NEW_VERSION="v${VERSION_ARRAY[0]}.${VERSION_ARRAY[1]}.$NEW_LAST-beta"
-                echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+                echo "VERSION=$VERSION" >> $GITHUB_ENV
 
             - name: Create Release
               uses: softprops/action-gh-release@v1
               with:
-                tag_name: ${{ steps.get_version.outputs.NEW_VERSION }}
-                name: ${{ steps.get_version.outputs.NEW_VERSION }}
-                body: "Release of Linpad application version ${{ steps.get_version.outputs.NEW_VERSION }}"
+                tag_name: ${{ env.VERSION }}
+                name: ${{ env.VERSION }}
+                body: "Release of Linpad application version ${{ env.VERSION }}"
                 files: output/linpad.deb
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

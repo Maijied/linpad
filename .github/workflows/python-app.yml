@@ -76,3 +76,20 @@ jobs:
       id: attest
       with:
         subject-path: '${{ github.workspace }}/output'
+
+    - name: Tag the release version
+      id: tag_version
+      run: |
+        # Fetch the latest tag
+        TAG=$(git describe --tags --abbrev=0)
+        # Extract the version numbers
+        VERSION=${TAG//v/}
+        # Split into an array
+        IFS='.' read -r -a VERSION_ARRAY <<< "$VERSION"
+        # Increment the last digit for beta versions
+        LAST=${VERSION_ARRAY[2]}
+        NEW_LAST=$((LAST + 1))
+        NEW_VERSION="v${VERSION_ARRAY[0]}.${VERSION_ARRAY[1]}.$NEW_LAST-beta"
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+        git tag $NEW_VERSION
+        git push origin $NEW_VERSION
