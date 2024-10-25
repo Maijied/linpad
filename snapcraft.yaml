@@ -1,0 +1,41 @@
+name: linpad
+version: '1.0.1-beta'  # Dynamic versioning based on your release plans
+summary: "Linpad text editor for Ubuntu with enhanced features"
+description: |
+  Linpad is a lightweight text editor designed for Ubuntu. It includes file handling, syntax highlighting, dark mode, zoom, word count, and replace functionality.
+
+grade: stable  # Use `devel` for development versions
+confinement: strict  # `strict` confinement for security
+
+base: core20  # Snapcraft base for compatibility with most libraries
+compression: lzo  # Alternative compression to prevent xz issues
+
+parts:
+  linpad:
+    plugin: python  # Using the Python plugin for dependencies
+    source: .
+    stage-packages:
+      - python3-tk  # Required for Tkinter
+      - python3
+    override-build: |
+      snapcraftctl build
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
+      cp linpad.py $SNAPCRAFT_PART_INSTALL/usr/bin/linpad
+      chmod +x $SNAPCRAFT_PART_INSTALL/usr/bin/linpad
+    prime:  # Exclude unnecessary files
+      - "-usr/lib/libBLTlite.2.5.so.8.6"  # Exclude unused library as per warning
+
+apps:
+  linpad:
+    command: usr/bin/linpad  # Entry command for the Linpad app
+    plugs:  # Required permissions
+      - home
+      - desktop
+      - desktop-legacy
+      - x11
+      - wayland
+      - network
+      - network-bind
+    environment:  # Set environment variables for app runtime
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
