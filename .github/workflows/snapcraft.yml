@@ -13,26 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Snapcraft
-      uses: diddlesnaps/action-snapcraft@v1
-      with:
-        version: 'latest/beta'  # Use the latest Snapcraft version
+      - name: Set up Snapcraft
+        uses: snapcore/snapcraft-action@v1
+        with:
+          version: 'latest/beta'  # Use the latest Snapcraft version
 
-    - name: Set version dynamically
-      run: |
-        VERSION="1.0.1-$(git rev-parse --short HEAD)"
-        sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
+      - name: Set version dynamically
+        run: |
+          VERSION="1.0.1-$(git rev-parse --short HEAD)"
+          sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
-    - name: Build Snap
-      run: snapcraft
+      - name: Build Snap
+        run: snapcraft
 
-    - name: Login to Snapcraft
-      env:
-        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS || '' }}
-      run: echo "${SNAPCRAFT_STORE_CREDENTIALS}" | snapcraft login --with -
+      - name: Login to Snapcraft
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
+        run: |
+          echo "${SNAPCRAFT_STORE_CREDENTIALS}" | snapcraft login --with -
 
-    - name: Push Snap to Snap Store
-      run: snapcraft push *.snap --release=stable
+      - name: Push Snap to Snap Store
+        run: snapcraft push *.snap --release=stable

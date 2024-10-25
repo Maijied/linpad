@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Name=Linpad
-Exec=/usr/bin/linpad
-Icon=linpad
+Exec=linpad
+Icon=/usr/local/bin/linpad/lin_logo.webp
 Type=Application
 Categories=TextEditor;Utility;
 Terminal=false
