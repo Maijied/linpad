@@ -11,6 +11,9 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architecture: [amd64, arm64, armhf, ppc64el, s390x, i386]
 
     steps:
       - name: Checkout repository
@@ -27,10 +30,17 @@ jobs:
           VERSION="1.0.1-$(git rev-parse --short HEAD)"
           sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
-      - name: Build Snap with Host Provider
-        run: snapcraft --use-lxd  # Ensures it runs directly on the host
+      - name: Build Snap for ${{ matrix.architecture }}
+        env:
+          SNAPCRAFT_BUILD_ENVIRONMENT: lxd
+        run: snapcraft --target-arch=${{ matrix.architecture }} --use-lxd
 
-      - name: Push Snap to Snap Store
+      - name: Login to Snapcraft
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
+        run: |
+          echo "${SNAPCRAFT_STORE_CREDENTIALS}" | snapcraft login --with -
+
+      - name: Push Snap to Snap Store
+        if: success()
         run: snapcraft push *.snap --release=stable
