@@ -28,13 +28,11 @@ jobs:
           sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
       - name: Build Snap in Destructive Mode
-        run: snapcraft --destructive-mode
-
-      - name: Login to Snapcraft
         env:
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
-        run: |
-          echo "${SNAPCRAFT_STORE_CREDENTIALS}" | snapcraft login --with -
+          SNAPCRAFT_BUILD_ENVIRONMENT: "destructive-mode"
+        run: snapcraft
 
       - name: Push Snap to Snap Store
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
         run: snapcraft push *.snap --release=stable
