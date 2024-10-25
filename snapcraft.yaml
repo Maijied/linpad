@@ -10,6 +10,14 @@ confinement: strict  # `strict` confinement for security
 base: core20  # Snapcraft base for compatibility with most libraries
 compression: lzo  # Alternative compression to prevent xz issues
 
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: ppc64el
+  - build-on: s390x
+  - build-on: riscv64
+
 parts:
   linpad:
     plugin: python  # Using the Python plugin for dependencies
