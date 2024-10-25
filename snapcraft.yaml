@@ -1,5 +1,5 @@
 name: linpad
-version: git  # Use git to dynamically determine the version
+version: "1.0.1-2baa188"
 summary: "Linpad text editor for Ubuntu with enhanced features"
 description: |
   Linpad is a lightweight text editor designed for Ubuntu. It includes file handling, syntax highlighting, dark mode, zoom, word count, and replace functionality.
@@ -25,6 +25,8 @@ parts:
     stage-packages:
       - python3-tk  # Required for Tkinter
       - python3
+      - libsqlite3-dev  # Additional dependency
+      - libssl-dev  # Additional dependency
     override-build: |
       snapcraftctl build
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
@@ -32,8 +34,6 @@ parts:
       chmod +x $SNAPCRAFT_PART_INSTALL/usr/bin/linpad
     prime:  # Exclude unnecessary files
       - "-usr/lib/libBLTlite.2.5.so.8.6"  # Exclude unused library as per warning
-    version-script: |
-      echo "1.0.1-$(git rev-parse --short HEAD)"
 
 apps:
   linpad:
