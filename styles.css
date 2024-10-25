@@ -13,24 +13,27 @@
     background-color: #f4f4f9;
   }
   
-  /* Hero Section */
-  .hero {
+  /* Header Section */
+  header {
     text-align: center;
     padding: 2rem;
     background: #282c34;
     color: white;
   }
   
+  /* Logo */
   .logo {
     max-width: 150px;
     margin-bottom: 1rem;
   }
   
+  /* Tagline */
   .tagline {
     font-size: 1.2rem;
     margin: 1rem 0;
   }
   
+  /* Call to Action Button */
   .cta-button, .snap-button {
     display: inline-block;
     margin: 0.5rem;
@@ -83,6 +86,46 @@
   .installation p {
     text-align: center;
     font-size: 1.1rem;
+  }
+  
+  /* Usage Section */
+  #usage {
+    padding: 2rem;
+    background: #fff;
+  }
+  
+  #usage h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Keyboard Shortcuts Section */
+  #keyboard-shortcuts {
+    padding: 2rem;
+    background: #e9ecef;
+  }
+  
+  #keyboard-shortcuts h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* About Section */
+  #about {
+    padding: 2rem;
+    background: #fff;
+  }
+  
+  #about h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Download Section */
+  #download {
+    text-align: center;
+    padding: 2rem;
+    background: #e9ecef;
   }
   
   /* Footer */
