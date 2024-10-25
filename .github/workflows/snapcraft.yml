@@ -27,10 +27,8 @@ jobs:
           VERSION="1.0.1-$(git rev-parse --short HEAD)"
           sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
-      - name: Build Snap in Destructive Mode
-        env:
-          SNAPCRAFT_BUILD_ENVIRONMENT: "destructive-mode"
-        run: snapcraft
+      - name: Build Snap with Host Provider
+        run: snapcraft --use-lxd  # Ensures it runs directly on the host
 
       - name: Push Snap to Snap Store
         env:
