@@ -3,10 +3,10 @@ name: Snapcraft CI/CD
 on:
   push:
     branches:
-      - main  # Adjust to your default branch if needed
+      - main
   pull_request:
     branches:
-      - main  # Adjust to your default branch if needed
+      - main
 
 jobs:
   build-and-publish:
@@ -16,24 +16,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Snapd
-        run: sudo apt update && sudo apt install -y snapd
-
-      - name: Install Snapcraft and LXD
+      - name: Install Snapd and Multipass
         run: |
-          sudo snap install core
+          sudo apt update
+          sudo apt install -y snapd
           sudo snap install snapcraft --classic
-          sudo snap install lxd --classic
-          sudo lxd init --auto  # Initialize lxd with default settings
+          sudo snap install multipass --classic
 
       - name: Set version dynamically
         run: |
           VERSION="1.0.1-$(git rev-parse --short HEAD)"
           sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
-      - name: Build Snap
+      - name: Build Snap with Multipass
         env:
-          SNAPCRAFT_BUILD_ENVIRONMENT: lxd  # Set Snapcraft to use lxd
+          SNAPCRAFT_BUILD_ENVIRONMENT: multipass
         run: snapcraft
 
       - name: Login to Snapcraft
