@@ -7,7 +7,7 @@
   
   /* Body Styling */
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f9;
@@ -16,21 +16,21 @@
   /* Header Section */
   header {
     text-align: center;
-    padding: 2rem;
-    background: #282c34;
+    padding: 3rem;
+    background: #1c1e22;
     color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
-  /* Logo */
   .logo {
     max-width: 150px;
     margin-bottom: 1rem;
   }
   
-  /* Tagline */
   .tagline {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 1rem 0;
+    font-weight: 300;
   }
   
   /* Call to Action Button */
@@ -42,45 +42,56 @@
     color: white;
     background: #61dafb;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .cta-button:hover, .snap-button:hover {
     background: #21a1f1;
+    transform: translateY(-2px);
   }
   
   /* Features Section */
   .features {
     padding: 2rem;
-    background: #fff;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
   }
   
   .features h2 {
     text-align: center;
     margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
   }
   
   .features ul {
     list-style-type: disc;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    padding-left: 1.5rem;
   }
   
   .features li {
     margin: 0.5rem 0;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   
   /* Installation Section */
   .installation {
     padding: 2rem;
     background: #e9ecef;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
   }
   
   .installation h2 {
     text-align: center;
     margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
   }
   
   .installation p {
@@ -91,34 +102,49 @@
   /* Usage Section */
   #usage {
     padding: 2rem;
-    background: #fff;
+    background: white;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
   }
   
   #usage h2 {
     text-align: center;
     margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
   }
   
   /* Keyboard Shortcuts Section */
   #keyboard-shortcuts {
     padding: 2rem;
     background: #e9ecef;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
   }
   
   #keyboard-shortcuts h2 {
     text-align: center;
     margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
   }
   
   /* About Section */
   #about {
     padding: 2rem;
-    background: #fff;
+    background: white;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
   }
   
   #about h2 {
     text-align: center;
     margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
   }
   
   /* Download Section */
@@ -126,14 +152,19 @@
     text-align: center;
     padding: 2rem;
     background: #e9ecef;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
   }
   
   /* Footer */
   footer {
     text-align: center;
-    padding: 1rem;
-    background: #282c34;
+    padding: 1.5rem;
+    background: #1c1e22;
     color: white;
     font-size: 0.9rem;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   }
   
