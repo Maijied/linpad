@@ -5,111 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linpad - A Modern Text Editor</title>
     <link rel="icon" href="lin_logo.webp">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Linpad</h1>
         <p>A simple yet powerful text editor designed for developers and writers.</p>
+        <a href="https://github.com/maijied/linpad" class="cta-button">View on GitHub</a>
     </header>
 
-    <section id="features">
-        <h2>Features</h2>
-        <ul>
-            <li><strong>Syntax Highlighting:</strong> Supports Python syntax highlighting.</li>
-            <li><strong>Word Count:</strong> Displays the number of words and characters in your document.</li>
-            <li><strong>Custom Fonts:</strong> Choose your preferred font and size.</li>
-            <li><strong>Dark Mode:</strong> Toggle between light and dark themes.</li>
-            <li><strong>Undo/Redo:</strong> Keep track of your changes with undo and redo functionality.</li>
-            <li><strong>Find and Replace:</strong> Easily find and replace text in your documents.</li>
-            <li><strong>Zoom In/Out:</strong> Adjust font size for better readability.</li>
-            <li><strong>Print:</strong> Save your documents for printing.</li>
-        </ul>
-    </section>
+    <main>
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li><strong>Syntax Highlighting:</strong> Supports Python syntax highlighting.</li>
+                <li><strong>Word Count:</strong> Displays the number of words and characters in your document.</li>
+                <li><strong>Custom Fonts:</strong> Choose your preferred font and size.</li>
+                <li><strong>Dark Mode:</strong> Toggle between light and dark themes.</li>
+                <li><strong>Undo/Redo:</strong> Keep track of your changes with undo and redo functionality.</li>
+                <li><strong>Find and Replace:</strong> Easily find and replace text in your documents.</li>
+                <li><strong>Zoom In/Out:</strong> Adjust font size for better readability.</li>
+                <li><strong>Print:</strong> Save your documents for printing.</li>
+            </ul>
+        </section>
 
-    <section id="installation">
-        <h2>Installation</h2>
-        <p>To install Linpad, follow these steps:</p>
-        <ol>
-            <li>Download the latest release from the <a href="https://github.com/maijied/linpad/releases">Releases page</a>.</li>
-            <li>Follow the installation instructions for your operating system (Windows, macOS, Linux).</li>
-        </ol>
-    </section>
+        <section id="installation">
+            <h2>Installation</h2>
+            <p>To install Linpad, follow these steps:</p>
+            <ol>
+                <li>Download the latest release from the <a href="https://github.com/maijied/linpad/releases">Releases page</a>.</li>
+                <li>Follow the installation instructions for your operating system (Windows, macOS, Linux).</li>
+            </ol>
+        </section>
 
-    <section id="usage">
-        <h2>Usage</h2>
-        <h3>Menu Options</h3>
-        <h4>File Menu:</h4>
-        <ul>
-            <li>New: Create a new file.</li>
-            <li>Open: Open an existing file.</li>
-            <li>Save: Save the current file.</li>
-            <li>Save As: Save the current file with a new name.</li>
-            <li>Print: Prepare the file for printing.</li>
-            <li>Exit: Close the application.</li>
-        </ul>
-        <h4>Edit Menu:</h4>
-        <ul>
-            <li>Undo: Revert the last action.</li>
-            <li>Redo: Redo the last undone action.</li>
-            <li>Cut/Copy/Paste: Basic text manipulation commands.</li>
-            <li>Delete: Remove the selected text.</li>
-            <li>Select All: Select all text in the editor.</li>
-            <li>Find: Search for specific text.</li>
-            <li>Replace: Replace specified text with new text.</li>
-            <li>Word Count: Display the word and character count.</li>
-        </ul>
-        <h4>Format Menu:</h4>
-        <ul>
-            <li>Font: Change the font family and size.</li>
-            <li>Toggle Dark Mode: Switch between dark and light themes.</li>
-            <li>Zoom In/Out: Increase or decrease the font size.</li>
-        </ul>
-        <h4>Help Menu:</h4>
-        <ul>
-            <li>About: Display information about Linpad.</li>
-            <li>Documentation: Open the online documentation.</li>
-        </ul>
-    </section>
+        <section id="usage">
+            <h2>Usage</h2>
+            <h3>Menu Options</h3>
+            <h4>File Menu:</h4>
+            <ul>
+                <li>New: Create a new file.</li>
+                <li>Open: Open an existing file.</li>
+                <li>Save: Save the current file.</li>
+                <li>Save As: Save the current file with a new name.</li>
+                <li>Print: Prepare the file for printing.</li>
+                <li>Exit: Close the application.</li>
+            </ul>
+            <h4>Edit Menu:</h4>
+            <ul>
+                <li>Undo: Revert the last action.</li>
+                <li>Redo: Redo the last undone action.</li>
+                <li>Cut/Copy/Paste: Basic text manipulation commands.</li>
+                <li>Delete: Remove the selected text.</li>
+                <li>Select All: Select all text in the editor.</li>
+                <li>Find: Search for specific text.</li>
+                <li>Replace: Replace specified text with new text.</li>
+                <li>Word Count: Display the word and character count.</li>
+            </ul>
+            <h4>Format Menu:</h4>
+            <ul>
+                <li>Font: Change the font family and size.</li>
+                <li>Toggle Dark Mode: Switch between dark and light themes.</li>
+                <li>Zoom In/Out: Increase or decrease the font size.</li>
+            </ul>
+            <h4>Help Menu:</h4>
+            <ul>
+                <li>About: Display information about Linpad.</li>
+                <li>Documentation: Open the online documentation.</li>
+            </ul>
+        </section>
 
-    <section id="keyboard-shortcuts">
-        <h2>Keyboard Shortcuts</h2>
-        <ul>
-            <li>New File: Ctrl + N</li>
-            <li>Open File: Ctrl + O</li>
-            <li>Save File: Ctrl + S</li>
-            <li>Save As: Ctrl + Shift + S</li>
-            <li>Print File: Ctrl + P</li>
-            <li>Exit: Ctrl + Q</li>
-            <li>Undo: Ctrl + Z</li>
-            <li>Redo: Ctrl + Y</li>
-            <li>Cut: Ctrl + X</li>
-            <li>Copy: Ctrl + C</li>
-            <li>Paste: Ctrl + V</li>
-            <li>Delete: Delete</li>
-            <li>Select All: Ctrl + A</li>
-            <li>Find: Ctrl + F</li>
-            <li>Replace: Ctrl + H</li>
-            <li>Word Count: Ctrl + W</li>
-            <li>Zoom In: Ctrl + =</li>
-            <li>Zoom Out: Ctrl + -</li>
-            <li>Toggle Dark Mode: Ctrl + D</li>
-            <li>Toggle Underline: Ctrl + U</li>
-        </ul>
-    </section>
+        <section id="keyboard-shortcuts">
+            <h2>Keyboard Shortcuts</h2>
+            <ul>
+                <li>New File: Ctrl + N</li>
+                <li>Open File: Ctrl + O</li>
+                <li>Save File: Ctrl + S</li>
+                <li>Save As: Ctrl + Shift + S</li>
+                <li>Print File: Ctrl + P</li>
+                <li>Exit: Ctrl + Q</li>
+                <li>Undo: Ctrl + Z</li>
+                <li>Redo: Ctrl + Y</li>
+                <li>Cut: Ctrl + X</li>
+                <li>Copy: Ctrl + C</li>
+                <li>Paste: Ctrl + V</li>
+                <li>Delete: Delete</li>
+                <li>Select All: Ctrl + A</li>
+                <li>Find: Ctrl + F</li>
+                <li>Replace: Ctrl + H</li>
+                <li>Word Count: Ctrl + W</li>
+                <li>Zoom In: Ctrl + =</li>
+                <li>Zoom Out: Ctrl + -</li>
+                <li>Toggle Dark Mode: Ctrl + D</li>
+                <li>Toggle Underline: Ctrl + U</li>
+            </ul>
+        </section>
 
-    <section id="about">
-        <h2>About</h2>
-        <p>Linpad is developed by Miaizied Hasan. This project is open-source, and I welcome any suggestions or contributions to make Linpad even better! Feel free to open issues or submit pull requests.</p>
-        <p>Linpad is released under the <a href="LICENSE">MIT License</a>.</p>
-        <p>Special thanks to the contributors and the open-source community for their support in making Linpad better!</p>
-    </section>
+        <section id="about">
+            <h2>About</h2>
+            <p>Linpad is developed by Miaizied Hasan. This project is open-source, and I welcome any suggestions or contributions to make Linpad even better! Feel free to open issues or submit pull requests.</p>
+            <p>Linpad is released under the <a href="LICENSE">MIT License</a>.</p>
+            <p>Special thanks to the contributors and the open-source community for their support in making Linpad better!</p>
+        </section>
 
-    <section id="download">
-        <h2>Download Linpad</h2>
-        <a href="https://snapcraft.io/linpad">
-            <img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg" />
-        </a>
-    </section>
+        <section id="download">
+            <h2>Download Linpad</h2>
+            <a href="https://snapcraft.io/linpad">
+                <img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg" />
+            </a>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2024 Miaizied Hasan</p>
