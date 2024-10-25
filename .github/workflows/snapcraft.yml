@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Snapcraft
-      uses: snapcore/action-snapcraft@v1
+      uses: diddlesnaps/action-snapcraft@v1
       with:
         version: 'latest/beta'  # Use the latest Snapcraft version
 
