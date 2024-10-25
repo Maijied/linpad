@@ -16,22 +16,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Snapd and Multipass
+      - name: Install Snapd and Snapcraft
         run: |
           sudo apt update
           sudo apt install -y snapd
           sudo snap install snapcraft --classic
-          sudo snap install multipass --classic
 
       - name: Set version dynamically
         run: |
           VERSION="1.0.1-$(git rev-parse --short HEAD)"
           sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
-      - name: Build Snap with Multipass
-        env:
-          SNAPCRAFT_BUILD_ENVIRONMENT: multipass
-        run: snapcraft
+      - name: Build Snap in Destructive Mode
+        run: snapcraft --destructive-mode
 
       - name: Login to Snapcraft
         env:
