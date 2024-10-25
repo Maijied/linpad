@@ -1,0 +1,96 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styling */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f9;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 2rem;
+    background: #282c34;
+    color: white;
+  }
+  
+  .logo {
+    max-width: 150px;
+    margin-bottom: 1rem;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+  
+  .cta-button, .snap-button {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    text-decoration: none;
+    color: white;
+    background: #61dafb;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .cta-button:hover, .snap-button:hover {
+    background: #21a1f1;
+  }
+  
+  /* Features Section */
+  .features {
+    padding: 2rem;
+    background: #fff;
+  }
+  
+  .features h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .features ul {
+    list-style-type: disc;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .features li {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  /* Installation Section */
+  .installation {
+    padding: 2rem;
+    background: #e9ecef;
+  }
+  
+  .installation h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .installation p {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background: #282c34;
+    color: white;
+    font-size: 0.9rem;
+  }
+  
