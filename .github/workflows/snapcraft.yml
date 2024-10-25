@@ -3,10 +3,10 @@ name: Snapcraft CI/CD
 on:
   push:
     branches:
-      - main  # Change this to your default branch
+      - main  # Adjust to your default branch if needed
   pull_request:
     branches:
-      - main  # Change this to your default branch
+      - main  # Adjust to your default branch if needed
 
 jobs:
   build-and-publish:
@@ -19,10 +19,12 @@ jobs:
       - name: Install Snapd
         run: sudo apt update && sudo apt install -y snapd
 
-      - name: Install Snapcraft
+      - name: Install Snapcraft and LXD
         run: |
           sudo snap install core
           sudo snap install snapcraft --classic
+          sudo snap install lxd --classic
+          sudo lxd init --auto  # Initialize lxd with default settings
 
       - name: Set version dynamically
         run: |
@@ -30,6 +32,8 @@ jobs:
           sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
       - name: Build Snap
+        env:
+          SNAPCRAFT_BUILD_ENVIRONMENT: lxd  # Set Snapcraft to use lxd
         run: snapcraft
 
       - name: Login to Snapcraft
