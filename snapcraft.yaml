@@ -49,3 +49,4 @@ apps:
     environment:  # Set environment variables for app runtime
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
+      
