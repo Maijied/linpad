@@ -5,10 +5,11 @@ description: |
   Linpad is a lightweight text editor designed for Ubuntu. It includes file handling, syntax highlighting, dark mode, zoom, word count, and replace functionality.
 
 grade: stable
-confinement: strict
+confinement: devmode  # Use devmode for testing; switch back to strict after confirming tkinter works
 
 architectures:
   - build-on: amd64
+  # Uncomment other architectures if needed
   # - build-on: arm64
   # - build-on: armhf
   # - build-on: ppc64el
@@ -26,6 +27,8 @@ parts:
       - python3
       - libsqlite3-dev
       - libssl-dev
+      - libtk8.6         # Additional tkinter dependency
+      - libtcl8.6        # Additional tkinter dependency
     override-build: |
       snapcraftctl build
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
@@ -41,6 +44,7 @@ apps:
       - desktop-legacy
       - x11
       - wayland
+      - opengl            # Additional plug for display compatibility
       - network
       - network-bind
     environment:
