@@ -1,5 +1,5 @@
 name: linpad
-version: "1.0.5"
+version: "1.0.2"
 summary: "Linpad text editor for Ubuntu with enhanced features"
 description: |
   Linpad is a lightweight text editor designed for Ubuntu. It includes file handling, syntax highlighting, dark mode, zoom, word count, and replace functionality.
