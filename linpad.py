@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
-import tkinter as tk
-from tkinter import filedialog, messagebox, simpledialog
-from tkinter import font
+import sys
+if sys.version_info[0] == 3:
+    import tkinter as tk
+    from tkinter import filedialog, messagebox, simpledialog, font
+else:
+    import Tkinter as tk
+    import tkFileDialog as filedialog
+    import tkMessageBox as messagebox
+    import tkSimpleDialog as simpledialog
+    import tkFont as font
 import keyword
 import webbrowser
 import os

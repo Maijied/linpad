@@ -22,7 +22,7 @@ parts:
     plugin: python
     source: .
     stage-packages:
-      - python3-tk
+      - python3.7-tk
       - python3
       - libsqlite3-dev
       - libssl-dev

@@ -5,7 +5,7 @@
 # Step 1: Install dependencies
 echo "Installing required dependencies..."
 sudo apt update
-sudo apt install -y python3 python3-tk python3-pil python3-pil.imagetk
+sudo apt install -y python3 python3.7-tk python3-pil python3-pil.imagetk
 
 # Step 2: Create directories
 echo "Setting up directories..."

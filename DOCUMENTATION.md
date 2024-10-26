@@ -61,7 +61,7 @@
 2. Install dependencies:
     ```bash
     sudo apt update
-    sudo apt install python3 python3-tk python3-pil
+    sudo apt install python3 python3.7-tk python3-pil
     ```
 
 3. Run the application:
