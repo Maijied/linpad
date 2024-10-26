@@ -2,7 +2,7 @@
 Version=1.0
 Name=Linpad
 Exec=linpad
-Icon=/usr/local/bin/linpad/lin_logo.webp
+Icon=/usr/share/icons/linpad.png
 Type=Application
 Categories=TextEditor;Utility;
 Terminal=false

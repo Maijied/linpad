@@ -5,5 +5,8 @@ Priority: optional
 Architecture: all
 Depends: python3, python3-tk
 Maintainer: Maizied Hasan <mdshuvo40@gmail.com>
-Description: Linpad is a simple text editor with syntax highlighting and word count functionality. I am going to make this open-source via GitHub, so everyone can collaborate to enhance and expand its features. Let me know if you have some good ideas to make it better. You will find me here : mdshuvo40@gmail.com
-
+Description: Linpad is a simple text editor with syntax highlighting and word count functionality.
+ Linpad is a simple text editor with syntax highlighting and word count functionality. 
+ I am going to make this open-source via GitHub, so everyone can collaborate to enhance 
+ and expand its features. Let me know if you have some good ideas to make it better. 
+ You will find me here: mdshuvo40@gmail.com

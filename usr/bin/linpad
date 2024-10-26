@@ -190,7 +190,7 @@ class Linpad:
         char_count = len(content)
         messagebox.showinfo("Word Count", f"Words: {word_count}\nCharacters: {char_count}")
 
-    def highlight_syntax(self):
+    def highlight_syntax(self, event=None):
         content = self.text_area.get('1.0', tk.END).split()
         for word in content:
             if word in keyword.kwlist:
