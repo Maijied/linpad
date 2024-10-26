@@ -27,6 +27,13 @@ jobs:
           sudo snap install lxd
           sudo lxd init --auto
 
+      - name: Start LXD service
+        run: |
+          sudo systemctl enable snap.lxd.daemon
+          sudo systemctl start snap.lxd.daemon
+          sudo lxd waitready
+          sudo lxd --version
+
       - name: Set version dynamically
         run: |
           VERSION="1.0.1-$(git rev-parse --short HEAD)"
