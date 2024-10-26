@@ -19,20 +19,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Snapd, Snapcraft, and LXD
+      - name: Install Snapd and Snapcraft
         run: |
           sudo apt update
           sudo apt install -y snapd
           sudo snap install snapcraft --classic
-          sudo snap install lxd
-          sudo lxd init --auto
-
-      - name: Start LXD service
-        run: |
-          sudo systemctl enable snap.lxd.daemon
-          sudo systemctl start snap.lxd.daemon
-          sudo lxd waitready
-          sudo lxd --version
 
       - name: Set version dynamically
         run: |
@@ -40,9 +31,7 @@ jobs:
           sed -i "s/^version: .*/version: \"$VERSION\"/" snapcraft.yaml
 
       - name: Build Snap for ${{ matrix.architecture }}
-        env:
-          SNAPCRAFT_BUILD_ENVIRONMENT: lxd
-        run: snapcraft --use-lxd
+        run: snapcraft
 
       - name: Login to Snapcraft
         env:
