@@ -3,7 +3,7 @@ Version: 1.0
 Section: utils
 Priority: optional
 Architecture: all
-Depends: python3, python3.7-tk
+Depends: python3,python3-tk
 Maintainer: Maizied Hasan <mdshuvo40@gmail.com>
 Description: Linpad is a simple text editor with syntax highlighting and word count functionality.
  Linpad is a simple text editor with syntax highlighting and word count functionality. 

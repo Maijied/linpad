@@ -200,7 +200,7 @@ Alternatively, you can download the latest build artifacts from our GitHub Actio
 The application requires the following packages to be installed:
 
 - `python3`
-- `python3.7-tk`
+- `python3-tk`
 - `python3-pil`
 - `python3-pil.imagetk`
 
@@ -210,7 +210,7 @@ You can install these dependencies using the following command:
 
 ```bash
 sudo apt update
-sudo apt install python3 python3.7-tk python3-pil
+sudo apt install python3 python3-tk python3-pil
 ```
 
 ## Contributing
