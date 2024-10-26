@@ -1,11 +1,11 @@
 name: linpad
-version: "1.0.2"
+version: "1.0.4-classic"
 summary: "Linpad text editor for Ubuntu with enhanced features"
 description: |
   Linpad is a lightweight text editor designed for Ubuntu. It includes file handling, syntax highlighting, dark mode, zoom, word count, and replace functionality.
 
 grade: stable
-confinement: devmode  # Use devmode for testing; switch back to strict after confirming tkinter works
+confinement: classic  # Changed from strict to classic for broader system access
 
 architectures:
   - build-on: amd64
